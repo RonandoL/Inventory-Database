@@ -1,13 +1,16 @@
 <?php
-    class Example
+    class Inventory
     {
-        private $xxx;
-        private $xxx;
-        private $name;
+        private $item;
 
-        function __construct($contact_name)
+        function __construct($item_name)
         {
-            $this->name = $contact_name;
+            $this->item = $item_name;
+        }
+
+        function getItem()
+        {
+            return $this->item;
         }
 
     // SAVE, getAll(), deleteAll()
@@ -15,13 +18,15 @@
         {
             array_push($_SESSION['list_of_contacts'], $this);
         }
+
         static function getAll()
         {
             return $_SESSION['list_of_contacts'];
         }
+
         static function deleteAll()
         {
-            $_SESSION['list_of_contacts'] = array();
+          $GLOBALS['DB']->exec("DELETE FROM inventory;");
         }
     }
 ?>

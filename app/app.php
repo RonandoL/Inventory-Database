@@ -1,11 +1,6 @@
 <?php
     require_once __DIR__."/../vendor/autoload.php";
-    require_once __DIR__."/../src/Example.php";
-
-    session_start();
-    if (empty($_SESSION['list_of_places'])) {
-        $_SESSION['list_of_places'] = array();
-    }
+    require_once __DIR__."/../src/Inventory.php";
 
     $app = new Silex\Application();
 
@@ -17,7 +12,7 @@
 
     // Render Home Page
     $app->get("/", function() use ($app) {
-        return $app['twig']->render('example.html.twig'); //
+        return $app['twig']->render('inventory.html.twig'); //
     });
 
     return $app;
