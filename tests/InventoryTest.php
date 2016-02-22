@@ -20,17 +20,31 @@
           Inventory::deleteAll();
         }
 
-        function test_getItem()
+        function test_getName()
         {
             //Arrange
-            $item = "book";
-            $test_Inventory = new Inventory($item);
+            $name = "book";
+            $test_Inventory = new Inventory($name);
 
             //Act
-            $result = $test_Inventory->getItem();
+            $result = $test_Inventory->getName();
 
             //Assert
-            $this->assertEquals($item, $result);
+            $this->assertEquals($name, $result);
+        }
+
+        function test_getId()
+        {
+            //Arrange
+            $name = "book";
+            $id = 1;
+            $test_Inventory = new Inventory($name, $id);
+
+            //Act
+            $result = $test_Inventory->getId();
+
+            //Assert
+            $this->assertEquals(true, is_numeric($result));
         }
     }
 

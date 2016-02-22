@@ -1,23 +1,36 @@
 <?php
     class Inventory
     {
-        private $item;
+        private $name;
+        private $id;
 
-        function __construct($item_name)
+        function __construct($item_name, $item_id=null)
         {
-            $this->item = $item_name;
+            $this->name = $item_name;
+            $this->id = $item_id;
         }
 
-        function getItem()
+        // function setItem($new_item)
+        // {
+        //     $this->item = (string) $new_item;
+        // }
+
+        function getName()
         {
-            return $this->item;
+            return $this->name;
+        }
+
+        function getId()
+        {
+            return $this->id;
         }
 
     // SAVE, getAll(), deleteAll()
-        function save()
-        {
-            array_push($_SESSION['list_of_contacts'], $this);
-        }
+    function save()
+    {
+        $GLOBALS['DB']->exec("INSERT INTO inventory_database (name) VALUES ('{$this->getItem()}')");
+        $this->id = $GLOBALS['DB']->lastInsertId();
+    }
 
         static function getAll()
         {
