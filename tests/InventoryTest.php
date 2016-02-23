@@ -96,6 +96,23 @@
             $this->assertEquals([], $result);
         }
 
+        function test_find()
+        {
+            //Arrange
+            $name = "book";
+            $name2 = "stamp";
+            $test_Inventory = new Inventory($name);
+            $test_Inventory->save();
+            $test_Inventory2 = new Inventory($name2);
+            $test_Inventory2->save();
+
+            //Act
+            $result = Inventory::find($test_Inventory->getId());
+
+            //Assert
+            $this->assertEquals($test_Inventory, $result);
+        }
+
     }
 
     // Run in terminal in project folder
