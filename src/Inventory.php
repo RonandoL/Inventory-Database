@@ -25,7 +25,7 @@
             return $this->id;
         }
 
-    // SAVE, getAll(), deleteAll()
+    // SAVE, getAll(), deleteAll(), find()
         function save()
         {
             $GLOBALS['DB']->exec("INSERT INTO inventory_items (name) VALUES ('{$this->getName()}')");

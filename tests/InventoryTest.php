@@ -15,6 +15,7 @@
     class InventoryTest extends PHPUnit_Framework_TestCase
     {
 
+        // applies deleteAll() in between each spec
         protected function tearDown()
         {
           Inventory::deleteAll();
