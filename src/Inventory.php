@@ -53,15 +53,15 @@
 
         static function find($search_id)
         {
-        //     $found_category = null;
-        //     $categories = Category::getAll();
-        //     foreach($categories as $category) {
-        //         $category_id = $category->getId();
-        //         if ($category_id == $search_id) {
-        //           $found_category = $category;
-        //         }
-        //     }
-        //     return $found_category;
+            $found_item = null;
+            $items = Inventory::getAll();
+            foreach($items as $item) {
+                $item_id = $item->getId();
+                if ($item_id == $search_id) {
+                  $found_item = $item;
+                }
+            }
+            return $found_item;
         }
     }
 ?>
