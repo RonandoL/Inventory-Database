@@ -26,20 +26,29 @@
         }
 
     // SAVE, getAll(), deleteAll()
-    function save()
-    {
-        $GLOBALS['DB']->exec("INSERT INTO inventory_database (name) VALUES ('{$this->getItem()}')");
-        $this->id = $GLOBALS['DB']->lastInsertId();
-    }
+        function save()
+        {
+            $GLOBALS['DB']->exec("INSERT INTO inventory_items (name) VALUES ('{$this->getName()}')");
+            $this->id = $GLOBALS['DB']->lastInsertId();
+        }
 
         static function getAll()
         {
-            return $_SESSION['list_of_contacts'];
+            $returned_items = $GLOBALS['DB']->query("SELECT * FROM inventory_items;");
+            $items = array();
+
+            foreach($returned_items as $item) {
+                $name = $item['name'];
+                $id = $item['id'];
+                $new_item = new Inventory($name, $id);
+                array_push($items, $new_item);
+        }
+            return $items;
         }
 
         static function deleteAll()
         {
-          $GLOBALS['DB']->exec("DELETE FROM inventory;");
+          $GLOBALS['DB']->exec("DELETE FROM inventory_items;");
         }
     }
 ?>

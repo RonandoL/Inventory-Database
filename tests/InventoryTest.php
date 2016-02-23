@@ -44,8 +44,40 @@
             $result = $test_Inventory->getId();
 
             //Assert
-            $this->assertEquals(true, is_numeric($result));
+            $this->assertEquals(1, $result);
         }
+
+        function test_save()
+        {
+            //Arrange
+            $name = "book";
+            $test_Inventory = new Inventory($name);
+            $test_Inventory->save();
+
+            //Act
+            $result = Inventory::getAll();
+
+            //Assert
+            $this->assertEquals($test_Inventory, $result[0]);
+        }
+
+        function test_getAll()
+        {
+            //Arrange
+            $name = "book";
+            $name2 = "stamp";
+            $test_Inventory = new Inventory($name);
+            $test_Inventory->save();
+            $test_Inventory2 = new Inventory($name2);
+            $test_Inventory2->save();
+
+            //Act
+            $result = Inventory::getAll();
+
+            //Assert
+            $this->assertEquals([$test_Inventory, $test_Inventory2], $result);
+        }
+
     }
 
     // Run in terminal in project folder
