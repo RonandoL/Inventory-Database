@@ -78,6 +78,24 @@
             $this->assertEquals([$test_Inventory, $test_Inventory2], $result);
         }
 
+        function test_deleteAll()
+        {
+            //Arrange
+            $name = "book";
+            $name2 = "stamp";
+            $test_Inventory = new Inventory($name);
+            $test_Inventory->save();
+            $test_Inventory2 = new Inventory($name2);
+            $test_Inventory2->save();
+
+            //Act
+            Inventory::deleteAll();
+            $result = Inventory::getAll();
+
+            //Assert
+            $this->assertEquals([], $result);
+        }
+
     }
 
     // Run in terminal in project folder
